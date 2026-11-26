@@ -99,6 +99,9 @@ def render_sidebar(current: str = "") -> None:
                 ):
                     st.switch_page(path)
 
+        # spacer lets margin-top: auto push account/logout/footer to the bottom
+        st.markdown('<div class="side-spacer"></div>', unsafe_allow_html=True)
+
         _account(admin.get("username", "admin"))
 
         if st.button("Keluar", icon=":material/logout:", key="nav_logout", use_container_width=True):

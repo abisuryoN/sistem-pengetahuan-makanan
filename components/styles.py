@@ -397,13 +397,28 @@ section[data-testid="stSidebar"] {
   border-right: 1px solid rgba(255,255,255,0.3);
 }
 section[data-testid="stSidebar"] > div { width: 262px !important; }
-[data-testid="stSidebarContent"] { padding: 16px 14px 14px; }
-[data-testid="stSidebarUserContent"] { padding: 0; }
+[data-testid="stSidebarContent"] { padding: 16px 14px 14px; height: 100%; }
+[data-testid="stSidebarUserContent"] { padding: 0; height: 100%; }
 [data-testid="stSidebarNav"] { display: none; }
 [data-testid="stSidebarHeader"] { padding: 0; height: 0; }
 [data-testid="stSidebarCollapseButton"] { color: var(--ink); }
 [data-testid="stSidebarCollapseButton"] button { color: var(--ink); }
-[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap: 0.7rem; }
+/* Sidebar fills the whole height: nav up top, account / logout / version pinned to bottom */
+[data-testid="stSidebarUserContent"] div[data-testid="stVerticalBlock"] {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 30px);
+  gap: 0.7rem;
+}
+[data-testid="stSidebarUserContent"] div[data-testid="stElementContainer"]:has(.side-spacer) {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+.side-spacer { flex: 1 1 auto; min-height: 8px; }
+[data-testid="stSidebarUserContent"] div[data-testid="stElementContainer"]:has(.side-account) {
+  margin-top: 0;
+  padding-top: 8px;
+}
 [data-testid="stSidebar"] .stButton > button {
   width: 100%;
   justify-content: flex-start;
