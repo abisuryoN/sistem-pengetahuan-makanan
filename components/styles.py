@@ -89,14 +89,14 @@ header[data-testid="stHeader"] {
 
 /* The page is a white sheet inset in the tinted frame. */
 [data-testid="stMainBlockContainer"] {
-   width: calc(100% - 262px);
+   width: 100%;
    max-width: none;
-   min-width: 600px;
+   min-width: 0;
    margin: 0.35rem 0;
    padding: 26px 34px 64px;
    background: var(--sheet);
-   border: 1px solid var(--border);
-   border-radius: var(--r-sheet);
+   border: none;
+   border-radius: 0;
    min-height: calc(100vh - 4rem);
 }
 [data-testid="stMain"] { background: var(--ground); }
