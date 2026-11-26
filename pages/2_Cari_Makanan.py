@@ -28,7 +28,7 @@ page_head(
     "Cari berdasarkan nama atau manfaat, lalu saring per kategori. Setiap makanan menampilkan status hubungannya dengan penyakit.",
 )
 
-filters = st.columns([2.4, 1.1, 0.9], gap="small", vertical_alignment="bottom")
+filters = st.columns([2.4, 1.1, 0.9], gap="small", vertical_alignment="center")
 with filters[0]:
     query = st.text_input(
         "Kata kunci",
@@ -38,7 +38,7 @@ with filters[0]:
 with filters[1]:
     kategori = st.selectbox("Kategori", KATEGORI, label_visibility="collapsed")
 with filters[2]:
-    st.markdown('<div style="height:38px;display:flex;align-items:flex-end"><span class="small strong" style="display:block;padding-bottom:9px">Hasil</span></div>', unsafe_allow_html=True)
+    st.markdown("**Hasil**")
 
 db = SessionLocal()
 try:

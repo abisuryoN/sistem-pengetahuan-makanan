@@ -39,14 +39,14 @@ if not names:
     )
     st.stop()
 
-top = st.columns([2.2, 1], gap="small", vertical_alignment="bottom")
+top = st.columns([2.2, 1], gap="small", vertical_alignment="center")
 with top[0]:
     pilihan = st.selectbox("Penyakit", names, index=0)
 with top[1]:
     st.markdown(
         compact(
             f"""
-            <div class="small faint" style="padding-bottom:9px">
+            <div class="small faint" style="margin-top:10px">
               {len(names)} penyakit tersedia
             </div>
             """
