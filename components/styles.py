@@ -454,24 +454,219 @@ section[data-testid="stSidebar"] > div { width: 262px !important; }
 .side-account .acc-role { font-size: 11.5px; color: #dbe9df; }
 .side-foot { font-size: 11px; color: #dbe9df; padding: 10px 9px 2px; }
 
-/* ---------- responsive ---------- */
+/* ============================================================
+   RESPONSIVE — mobile-first progressive enhancement.
+   Target widths tested: 320, 360, 375, 390, 412, 430,
+   then tablet 560 / 768 / 900 and desktop 1200+.
+   ============================================================ */
+
+/* No horizontal scrolling anywhere. */
+html, body, .stApp, [data-testid="stAppViewContainer"] {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+[data-testid="stMainBlockContainer"] { box-sizing: border-box; }
+
+/* Long scientific reasons must wrap instead of pushing cards wide. */
+.rel .rel-note, .panel-note, .page-sub, .stMarkdown p { overflow-wrap: anywhere; }
+.tbl-scroll, .matrix { -webkit-overflow-scrolling: touch; }
+
+/* ---- Desktop laptops ---- */
+@media (max-width: 1200px) {
+  [data-testid="stMainBlockContainer"] { padding: 24px 28px 60px; }
+}
+
+/* ---- Tablets landscape / small laptops ---- */
 @media (max-width: 900px) {
-  [data-testid="stMainBlockContainer"] { width: 100%; min-width: 0; padding: 20px 20px 48px; margin: 0.25rem 0.5rem 1rem; border-radius: 12px; }
+  [data-testid="stMainBlockContainer"] {
+    width: 100%;
+    min-width: 0;
+    padding: 22px 24px 56px;
+    margin: 0.25rem 0.5rem 1rem;
+    border-radius: 12px;
+  }
+  .kpi-strip { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); }
+  .page-head { flex-direction: column; gap: 8px; }
+  .page-meta { padding-top: 0; }
+  .matrix th, .matrix td { padding: 5px 8px; }
+}
+
+/* ---- Tablets portrait: folding nav drawer, KPIs 3-up ---- */
+@media (max-width: 768px) {
+  [data-testid="stMainBlockContainer"] {
+    width: 100%;
+    min-width: 0;
+    padding: 20px 20px 48px;
+    margin: 0.25rem 0.5rem 1rem;
+    border-radius: 12px;
+  }
   .kpi-strip { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); }
   .page-head { flex-direction: column; gap: 8px; }
   .page-meta { padding-top: 0; }
+
+  /* Drawer instead of the wide desktop rail. */
+  section[data-testid="stSidebar"],
+  section[data-testid="stSidebar"] > div {
+    width: min(82vw, 300px) !important;
+    min-width: min(82vw, 300px) !important;
+    max-width: 320px !important;
+  }
+  [data-testid="stSidebarContent"] { padding: 14px 12px 12px; }
+  [data-testid="stSidebar"] .stButton > button { min-height: 46px; font-size: 14px; }
+  [data-testid="stSidebarCollapsedControl"] { padding: 6px; }
+  [data-testid="stSidebarCollapsedControl"] button { min-height: 40px; min-width: 40px; }
 }
+
+/* ---- Large phones: KPI strip 2-up, real touch targets ---- */
 @media (max-width: 560px) {
-  [data-testid="stMainBlockContainer"] { width: 100%; min-width: 0; padding: 16px 18px 40px; }
-  [data-testid="stHeader"] { padding-left: 10px; }
+  [data-testid="stMainBlockContainer"] {
+    width: 100%;
+    min-width: 0;
+    padding: 16px 16px 40px;
+    margin: 0;
+    border-radius: 10px;
+  }
+  header[data-testid="stHeader"] { height: 2.5rem; }
+  [data-testid="stToolbar"] { right: 0.4rem; }
+
   .kpi-strip { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); }
   .kpi { padding: 12px 14px; }
   .kpi-value { font-size: 24px; }
+
   .page-head h1 { font-size: 22px !important; }
-  .matrix th, .matrix td { min-width: 0; padding: 4px 8px; border-spacing: 8px 0; }
+  .section-head { margin: 18px 0 8px; }
+
+  .matrix th, .matrix td { min-width: 0; padding: 4px 8px; }
   .bar-row { grid-template-columns: minmax(84px, 108px) 1fr 28px; gap: 9px; }
+
   .login-brand { min-height: 0; padding: 26px 22px; }
   .login-brand h2 { font-size: 23px !important; margin-top: 18px; }
+
+  /* One comfortable tap height for every control on a phone. */
+  .stButton > button, .stFormSubmitButton > button, .stDownloadButton > button {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  [data-testid="stTextInput"] div[data-baseweb="input"],
+  [data-testid="stNumberInput"] div[data-baseweb="input"],
+  [data-testid="stTextArea"] div[data-baseweb="textarea"],
+  [data-testid="stSelectbox"] div[data-baseweb="select"] > div { min-height: 44px; }
+  /* 16px stops iOS Safari zooming the page when a field focuses. */
+  [data-testid="stTextInput"] input,
+  [data-testid="stNumberInput"] input,
+  [data-testid="stTextArea"] textarea,
+  [data-testid="stSelectbox"] div[data-baseweb="select"] { font-size: 16px; }
+}
+
+/* ---- Standard phones (375-430): recompose, not just shrink ---- */
+@media (max-width: 440px) {
+  [data-testid="stMainBlockContainer"] { padding: 14px 13px 34px; }
+  h1 { font-size: 20px !important; }
+  h2 { font-size: 16px !important; }
+  h3 { font-size: 14px !important; }
+  p, li, label, .stMarkdown { font-size: 13.5px; }
+
+  .page-head { margin: 0 0 14px; }
+  .page-sub { font-size: 13px; }
+
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); gap: 1px; }
+  .kpi { padding: 11px 12px; }
+  .kpi-value { font-size: 21px; }
+  .kpi-label { font-size: 11.5px; }
+  .kpi-note { font-size: 11px; }
+
+  .panel { padding: 13px 14px; margin-bottom: 14px; }
+  .panel-head { gap: 8px; margin-bottom: 9px; }
+  .panel-head h2 { font-size: 14px !important; }
+  .panel-meta { font-size: 11px; white-space: normal; }
+  .panel-note { font-size: 11px; margin-top: 8px; }
+
+  .matrix { min-width: 460px; }
+  .mk { width: 21px; height: 21px; font-size: 10px; }
+  .matrix td.rowhead { padding: 6px 8px 6px 0; font-size: 12px; }
+
+  .rel { gap: 8px; padding: 8px 0; }
+  .rel .rel-name { font-size: 13px; }
+  .rel .rel-note { font-size: 12px; }
+  .badge { font-size: 11px; padding: 3px 6px; }
+
+  .empty { padding: 20px 16px; }
+  .empty p { font-size: 12.5px; }
+
+  /* Login stacks into one centred column; the form leads on a phone. */
+  html:has(#login-screen) [data-testid="stMainBlockContainer"] { padding: 3vh 12px 22px; }
+  .login-brand { padding: 22px 18px; gap: 15px; }
+  .login-brand h2 { font-size: 19px !important; margin: 14px 0 8px; max-width: none; }
+  .login-brand p { font-size: 12.5px; max-width: none; }
+  .login-brand .brand-facts { margin-top: 14px; gap: 6px; }
+  .login-brand .brand-facts li { font-size: 12px; }
+  .login-brand .brand-foot { font-size: 11px; }
+  .login-form-title { font-size: 19px !important; }
+  .login-form-sub { font-size: 12.5px; margin-bottom: 14px; }
+  html:has(#login-screen) [data-testid="stVerticalBlock"]:has([data-testid="stForm"]) { padding: 20px 16px 16px; }
+  .login-note { font-size: 11.5px; }
+  .login-foot { padding: 22px 0 4px; }
+
+  /* Tables in the CRUD pages scroll inside their own frame. */
+  .tbl { font-size: 12.5px; }
+  .tbl th { padding: 0 8px 6px; font-size: 11px; }
+  .tbl td { padding: 8px; }
+
+  /* Menus, tabs and popovers stay inside the viewport. */
+  div[data-baseweb="popover"] { max-width: 94vw !important; }
+  div[data-baseweb="popover"] li { padding: 12px 14px; font-size: 15px; }
+  .stTabs [data-baseweb="tab-list"] { gap: 14px; overflow-x: auto; padding-bottom: 2px; }
+  .stTabs [data-baseweb="tab"] { padding: 10px 2px; font-size: 13px; white-space: nowrap; }
+  [data-testid="stExpander"] summary { padding: 12px 14px; font-size: 14px; }
+  [data-testid="stExpander"] [data-testid="stExpanderDetails"] { padding: 8px 14px 16px; }
+  [data-testid="stAlert"] { padding: 12px 14px; }
+}
+
+/* ---- Small phones (375 / 360) ---- */
+@media (max-width: 375px) {
+  [data-testid="stMainBlockContainer"] { padding: 12px 11px 30px; }
+  h1 { font-size: 19px !important; }
+  .kpi-value { font-size: 20px; }
+  .panel { padding: 12px 12px; }
+  .bar-row { grid-template-columns: minmax(70px, 92px) 1fr 24px; gap: 8px; }
+}
+@media (max-width: 360px) {
+  [data-testid="stMainBlockContainer"] { padding: 11px 10px 28px; }
+  h1 { font-size: 18px !important; }
+  h2 { font-size: 15px !important; }
+  .kpi { padding: 9px 10px; }
+  .kpi-value { font-size: 19px; }
+  .kpi-label { font-size: 11px; }
+  .matrix { min-width: 430px; }
+}
+
+/* ---- 320px: single KPI column, tightest rhythm ---- */
+@media (max-width: 320px) {
+  [data-testid="stMainBlockContainer"] { padding: 10px 9px 24px; }
+  h1 { font-size: 17px !important; }
+  h2 { font-size: 14px !important; }
+  .page-sub { font-size: 12px; }
+  .kpi-strip { grid-template-columns: 1fr; }
+  .kpi { padding: 9px 10px; }
+  .kpi-value { font-size: 18px; }
+  .panel { padding: 10px 11px; margin-bottom: 11px; }
+  .matrix { min-width: 400px; }
+  .matrix td.rowhead { padding: 5px 6px 5px 0; font-size: 11.5px; }
+  .mk { width: 19px; height: 19px; font-size: 9px; }
+  .rel { font-size: 12px; gap: 6px; }
+  .badge { font-size: 10px; padding: 2px 5px; }
+  .stButton > button, .stFormSubmitButton > button { min-height: 42px; font-size: 13.5px; }
+  .login-brand { padding: 18px 14px; }
+  .login-brand h2 { font-size: 18px !important; }
+}
+
+/* ---- Phone landscape: reclaim vertical space ---- */
+@media (max-width: 820px) and (max-height: 450px) and (orientation: landscape) {
+  [data-testid="stMainBlockContainer"] { padding: 8px 16px 24px; }
+  .login-brand { padding: 16px 18px; gap: 10px; }
+  .login-brand h2 { margin-top: 6px; }
+  .panel { margin-bottom: 12px; }
+  .kpi-strip { margin-bottom: 14px; }
 }
 """
 
