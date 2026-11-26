@@ -121,28 +121,30 @@ if not relasi:
     )
     st.stop()
 
-kolom = st.columns(3, gap="medium")
 kelompok = [("Dianjurkan", "boleh diteruskan"), ("Batasi", "porsi & frekuensi"), ("Hindari", "sebaiknya tidak")]
+kolom = st.columns(3, gap="medium")
 for kolom_col, (status, keterangan) in zip(kolom, kelompok):
     with kolom_col:
-        items = [rel for rel, makanan in relasi if rel.status == status]
+        items = [(rel, makanan) for rel, makanan in relasi if rel.status == status]
+        # Build whole panel content in one go so items sit inside the card
+        if not items:
+            body_html = '<div class="panel-note">Tidak ada makanan pada status ini.</div>'
+        else:
+            body_html = "".join(
+                relation_line(makanan.nama, rel.status, rel.alasan)
+                for rel, makanan in items
+            )
         st.markdown(
             compact(
                 f"""
-                <div class="panel" style="min-height:186px">
+                <div class="panel">
                   <div class="panel-head">
                     <h2>{esc(status)}</h2>
                     <span class="panel-meta">{len(items)} · {esc(keterangan)}</span>
                   </div>
+                  {body_html}
                 </div>
                 """
             ),
             unsafe_allow_html=True,
         )
-        if not items:
-            st.markdown('<div class="panel-note">Tidak ada makanan pada status ini.</div>', unsafe_allow_html=True)
-            continue
-        for rel, makanan in relasi:
-            if rel.status != status:
-                continue
-            st.markdown(relation_line(makanan.nama, rel.status, rel.alasan), unsafe_allow_html=True)
