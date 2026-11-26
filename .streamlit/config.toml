@@ -1,0 +1,46 @@
+[client]
+toolbarMode = "minimal"
+showSidebarNavigation = false
+
+[theme]
+base = "light"
+primaryColor = "#1b6c80"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f4f6f8"
+textColor = "#131416"
+linkColor = "#1b6c80"
+borderColor = "#e8eaec"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "8px"
+buttonRadius = "6px"
+font = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+baseFontSize = 15
+headingFont = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+headingFontSizes = ["1.75rem", "1.375rem", "1.125rem", "1rem", "0.9375rem", "0.875rem"]
+headingFontWeights = [600, 600, 600, 500, 500, 500]
+codeFont = "IBM Plex Mono"
+
+greenColor = "#1e7b4f"
+greenBackgroundColor = "#dcfae5"
+redColor = "#c4242a"
+redBackgroundColor = "#ffedea"
+orangeColor = "#92400e"
+orangeBackgroundColor = "#fffbeb"
+blueColor = "#1b6c80"
+blueBackgroundColor = "#e8f4f7"
+grayColor = "#5d5f60"
+grayBackgroundColor = "#ebedee"
+yellowColor = "#a86f0c"
+yellowBackgroundColor = "#fffbeb"
+violetColor = "#5d5f60"
+violetBackgroundColor = "#ebedee"
+
+chartCategoricalColors = ["#1b6c80", "#2f70bb", "#a86f0c", "#1e7b4f", "#c4242a", "#5d5f60"]
+
+[theme.sidebar]
+backgroundColor = "#f4f6f8"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#131416"
+primaryColor = "#1b6c80"
+borderColor = "#e8eaec"
