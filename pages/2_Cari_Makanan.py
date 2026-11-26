@@ -38,7 +38,7 @@ with filters[0]:
 with filters[1]:
     kategori = st.selectbox("Kategori", KATEGORI, label_visibility="collapsed")
 with filters[2]:
-    st.markdown('<div class="small faint" style="padding-bottom:9px">Hasil</div>', unsafe_allow_html=True)
+    st.markdown('<div style="height:38px;display:flex;align-items:flex-end"><span class="small strong" style="display:block;padding-bottom:9px">Hasil</span></div>', unsafe_allow_html=True)
 
 db = SessionLocal()
 try:

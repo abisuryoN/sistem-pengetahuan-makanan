@@ -124,7 +124,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 16px 0; }
 
 .muted { color: var(--muted); }
 .faint { color: var(--faint); }
-.small { font-size: 12px; }
+.small { font-size: 12px; font-weight: 600; }
 .strong { font-weight: 600; }
 .num { font-variant-numeric: tabular-nums; text-align: right; }
 .hr { height: 1px; background: var(--rule); margin: 18px 0; }
@@ -150,6 +150,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 16px 0; }
 .kpi.accent .kpi-value { color: var(--accent-ink); }
 
 /* ---------- panels ---------- */
+.panel { border: 1px solid var(--border); border-radius: var(--r-card); background: var(--sheet); padding: 16px 18px; margin-bottom: 22px; }
 .panel { border: 1px solid var(--border); border-radius: var(--r-card); background: var(--sheet); padding: 16px 18px; }
 .panel.raised { background: var(--raised); }
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
@@ -191,8 +192,10 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 16px 0; }
 .tbl-scroll { overflow-x: auto; max-width: 100%; }
 
 /* ---------- relation matrix (this product's own element) ---------- */
+.matrix th { font-weight: 500; font-size: 11.5px; color: var(--muted); padding: 0 8px 10px; text-align: center; white-space: nowrap; }
 .matrix { border-collapse: collapse; width: 100%; min-width: 540px; font-size: 13px; }
 .matrix th { font-weight: 500; font-size: 11.5px; color: var(--muted); padding: 0 0 8px; text-align: center; white-space: nowrap; }
+.matrix td { padding: 6px 8px; text-align: center; border-top: 1px solid var(--rule); }
 .matrix th.rowhead { text-align: left; padding-right: 12px; }
 .matrix td { padding: 5px 0; text-align: center; border-top: 1px solid var(--rule); }
 .matrix td.rowhead { text-align: left; padding: 8px 12px 8px 0; font-size: 13px; color: var(--ink); white-space: nowrap; }
@@ -441,7 +444,7 @@ section[data-testid="stSidebar"] > div { width: 262px !important; }
 .side-brand { display: flex; align-items: center; gap: 9px; padding: 2px 2px 14px; }
 .side-brand .side-name { font-size: 13px; font-weight: 600; line-height: 1.25; color: #dbe9df; }
 .side-brand .side-scope { font-size: 11.5px; color: #dbe9df; margin-top: 1px; }
-.side-group { font-size: 11.5px; font-weight: 500; color: #dbe9df; padding: 12px 9px 4px; letter-spacing: 0.01em; }
+.side-group { font-size: 11.5px; font-weight: 500; color: #dbe9df; padding: 12px 9px 4px; letter-spacing: 0.01em; margin-bottom: .5rem; }
 .side-account { border-top: 1px solid rgba(255,255,255,0.2); margin-top: 10px; padding: 10px 2px 2px; display: flex; align-items: center; gap: 9px; }
 .side-account .avatar {
   width: 26px; height: 26px; border-radius: 6px; background: #e8f1f3; color: #10382c;
@@ -465,7 +468,7 @@ section[data-testid="stSidebar"] > div { width: 262px !important; }
   .kpi { padding: 12px 14px; }
   .kpi-value { font-size: 24px; }
   .page-head h1 { font-size: 22px !important; }
-  .matrix th, .matrix td { min-width: 0; }
+  .matrix th, .matrix td { min-width: 0; padding: 4px 8px; border-spacing: 8px 0; }
   .bar-row { grid-template-columns: minmax(84px, 108px) 1fr 28px; gap: 9px; }
   .login-brand { min-height: 0; padding: 26px 22px; }
   .login-brand h2 { font-size: 23px !important; margin-top: 18px; }
